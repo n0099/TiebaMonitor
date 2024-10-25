@@ -15,7 +15,7 @@ class Reply extends Post
     #[ORM\Column] private int $floor;
     #[ORM\Column] private ?int $subReplyCount;
     #[ORM\Column] private ?int $isFold;
-    /** @type ?resource */
+    /** @var ?resource */
     #[ORM\Column] protected $geolocation;
     #[ORM\Column] private ?int $signatureId;
 
@@ -74,8 +74,8 @@ class Reply extends Post
         return BlobResourceGetter::protoBuf($this->geolocation, Lbs::class);
     }
 
-    /** @param resource|null $geolocation */
-    public function setGeolocation(null $geolocation): void
+    /** @param ?resource $geolocation */
+    public function setGeolocation($geolocation): void
     {
         $this->geolocation = $geolocation;
     }

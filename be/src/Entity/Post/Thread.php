@@ -22,9 +22,9 @@ class Thread extends Post
     #[ORM\Column] private ?int $replyCount;
     #[ORM\Column] private ?int $viewCount;
     #[ORM\Column] private ?int $shareCount;
-    /** @type ?resource */
+    /** @var ?resource */
     #[ORM\Column] protected $zan;
-    /** @type ?resource */
+    /** @var ?resource */
     #[ORM\Column] protected $geolocation;
     #[ORM\Column] private ?string $authorPhoneType;
 
@@ -143,8 +143,8 @@ class Thread extends Post
         return BlobResourceGetter::protoBuf($this->zan, Zan::class);
     }
 
-    /** @param resource|null $zan */
-    public function setZan(null $zan): void
+    /** @param ?resource $zan */
+    public function setZan($zan): void
     {
         $this->zan = $zan;
     }
@@ -154,8 +154,8 @@ class Thread extends Post
         return BlobResourceGetter::protoBuf($this->geolocation, Lbs::class);
     }
 
-    /** @param resource|null $geolocation */
-    public function setGeolocation(null $geolocation): void
+    /** @param ?resource $geolocation */
+    public function setGeolocation($geolocation): void
     {
         $this->geolocation = $geolocation;
     }

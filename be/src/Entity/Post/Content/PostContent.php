@@ -9,7 +9,7 @@ use TbClient\Wrapper\PostContentWrapper;
 #[ORM\MappedSuperclass]
 abstract class PostContent
 {
-    /** @type ?resource */
+    /** @var ?resource */
     #[ORM\Column] private $protoBufBytes;
 
     public function getContent(): ?array
@@ -17,8 +17,8 @@ abstract class PostContent
         return BlobResourceGetter::protoBufWrapper($this->protoBufBytes, PostContentWrapper::class);
     }
 
-    /** @param resource|null $protoBufBytes */
-    public function setProtoBufBytes(null $protoBufBytes): void
+    /** @param ?resource $protoBufBytes */
+    public function setProtoBufBytes($protoBufBytes): void
     {
         $this->protoBufBytes = $protoBufBytes;
     }

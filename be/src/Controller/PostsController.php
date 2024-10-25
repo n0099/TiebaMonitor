@@ -18,7 +18,6 @@ use App\Repository\Revision\AuthorExpGradeRepository;
 use App\Repository\Revision\ForumModeratorRepository;
 use App\Repository\UserRepository;
 use App\Validator\Validator;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Psr\Container\ContainerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
