@@ -4,9 +4,9 @@ namespace App\Controller;
 
 use App\DTO\User\AuthorExpGrade;
 use App\DTO\User\ForumModerator;
+use App\DTO\User\User;
 use App\Entity\Post\Post;
 use App\Entity\Post\Thread;
-use App\Entity\User;
 use App\Helper;
 use App\PostsQuery\BaseQuery;
 use App\PostsQuery\IndexQuery;
@@ -94,7 +94,8 @@ class PostsController extends AbstractController
             ->flatMap(static fn(Collection $posts) => $posts->map(fn(Post $post) => $post->getAuthorUid()))
             ->concat($latestRepliers->pluck('uid')->filter()) // filter() will remove NULLs
             ->unique();
-        $users = collect($this->userRepository->getUsers($uids));
+        $users = collect($this->userRepository->getUsers($uids))
+            ->map(fn(\App\Entity\User $entity) => User::fromEntity($entity));
         $this->stopwatch->stop('queryUsers');
 
         $this->stopwatch->start('queryUserRelated');

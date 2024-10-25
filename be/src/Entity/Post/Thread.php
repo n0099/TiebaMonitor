@@ -23,9 +23,9 @@ class Thread extends Post
     #[ORM\Column] private ?int $viewCount;
     #[ORM\Column] private ?int $shareCount;
     /** @type ?resource */
-    #[ORM\Column] private $zan;
+    #[ORM\Column] protected $zan;
     /** @type ?resource */
-    #[ORM\Column] private $geolocation;
+    #[ORM\Column] protected $geolocation;
     #[ORM\Column] private ?string $authorPhoneType;
 
     public function getTid(): int

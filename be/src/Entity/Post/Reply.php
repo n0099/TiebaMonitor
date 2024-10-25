@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 use TbClient\Post\Common\Lbs;
 
 #[ORM\Entity(repositoryClass: ReplyRepository::class)]
-class Reply extends PostWithContent
+class Reply extends Post
 {
     #[ORM\Column] private int $tid;
     #[ORM\Column, ORM\Id] private int $pid;
@@ -16,7 +16,7 @@ class Reply extends PostWithContent
     #[ORM\Column] private ?int $subReplyCount;
     #[ORM\Column] private ?int $isFold;
     /** @type ?resource */
-    #[ORM\Column] private $geolocation;
+    #[ORM\Column] protected $geolocation;
     #[ORM\Column] private ?int $signatureId;
 
     public function getTid(): int

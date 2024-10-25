@@ -13,7 +13,6 @@ abstract class Post extends TimestampedEntity
     #[ORM\Column] private ?int $lastSeenAt;
     #[ORM\Column] private ?int $agreeCount;
     #[ORM\Column] private ?int $disagreeCount;
-    private bool $isMatchQuery;
 
     public function getAuthorUid(): int
     {
@@ -63,15 +62,5 @@ abstract class Post extends TimestampedEntity
     public function setDisagreeCount(?int $disagreeCount): void
     {
         $this->disagreeCount = $disagreeCount;
-    }
-
-    public function getIsMatchQuery(): bool
-    {
-        return $this->isMatchQuery;
-    }
-
-    public function setIsMatchQuery(bool $isMatchQuery): void
-    {
-        $this->isMatchQuery = $isMatchQuery;
     }
 }

@@ -2,8 +2,6 @@
 
 namespace App\Entity;
 
-use App\DTO\User\AuthorExpGrade;
-use App\DTO\User\ForumModerator;
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use TbClient\Wrapper\UserIconWrapper;
@@ -15,16 +13,14 @@ class User extends TimestampedEntity
     #[ORM\Column, ORM\Id] private int $uid;
     #[ORM\Column] private ?string $name;
     /** @type ?resource */
-    #[ORM\Column] private $displayName;
+    #[ORM\Column] protected $displayName;
     #[ORM\Column] private string $portrait;
     #[ORM\Column] private ?int $portraitUpdatedAt;
     #[ORM\Column] private ?int $gender;
     #[ORM\Column] private ?string $fansNickname;
     /** @type ?resource */
-    #[ORM\Column] private $icon;
+    #[ORM\Column] protected $icon;
     #[ORM\Column] private ?string $ipGeolocation;
-    private ?ForumModerator $currentForumModerator;
-    private ?AuthorExpGrade $currentAuthorExpGrade;
 
     public function getUid(): ?int
     {
@@ -116,25 +112,5 @@ class User extends TimestampedEntity
     public function setIpGeolocation(?string $ipGeolocation): void
     {
         $this->ipGeolocation = $ipGeolocation;
-    }
-
-    public function getCurrentForumModerator(): ?ForumModerator
-    {
-        return $this->currentForumModerator;
-    }
-
-    public function setCurrentForumModerator(?ForumModerator $currentForumModerator): void
-    {
-        $this->currentForumModerator = $currentForumModerator;
-    }
-
-    public function getCurrentAuthorExpGrade(): ?AuthorExpGrade
-    {
-        return $this->currentAuthorExpGrade;
-    }
-
-    public function setCurrentAuthorExpGrade(?AuthorExpGrade $currentAuthorExpGrade): void
-    {
-        $this->currentAuthorExpGrade = $currentAuthorExpGrade;
     }
 }

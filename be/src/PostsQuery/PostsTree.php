@@ -7,9 +7,9 @@ use App\DTO\PostKey\SubReply as SubReplyKey;
 use App\DTO\PostKey\Thread as ThreadKey;
 use App\Entity\Post\Content\ReplyContent;
 use App\Entity\Post\Content\SubReplyContent;
-use App\Entity\Post\Reply;
-use App\Entity\Post\SubReply;
-use App\Entity\Post\Thread;
+use App\DTO\Post\Reply;
+use App\DTO\Post\SubReply;
+use App\DTO\Post\Thread;
 use App\Helper;
 use App\Repository\Post\PostRepositoryFactory;
 use Illuminate\Support\Collection;
@@ -57,6 +57,7 @@ readonly class PostsTree
             ->concat($result->subReplies->map(fn(SubReplyKey $postKey) => $postKey->tid))
             ->unique();
         $this->threads = collect($postModels['thread']->getPosts($parentThreadsID->concat($tids)))
+            ->map(fn(\App\Entity\Post\Thread $entity) => Thread::fromEntity($entity))
             ->each(static fn(Thread $thread) =>
                 $thread->setIsMatchQuery($tids->contains($thread->getTid())));
         $this->stopwatch->stop('fillWithThreadsFields');
@@ -66,12 +67,14 @@ readonly class PostsTree
         $parentRepliesID = $result->subReplies->map(fn(SubReplyKey $postKey) => $postKey->parentPostId)->unique();
         $allRepliesId = $parentRepliesID->concat($pids);
         $this->replies = collect($postModels['reply']->getPosts($allRepliesId))
+            ->map(fn(\App\Entity\Post\Reply $entity) => Reply::fromEntity($entity))
             ->each(static fn(Reply $reply) =>
                 $reply->setIsMatchQuery($pids->contains($reply->getPid())));
         $this->stopwatch->stop('fillWithRepliesFields');
 
         $this->stopwatch->start('fillWithSubRepliesFields');
-        $this->subReplies = collect($postModels['subReply']->getPosts($spids));
+        $this->subReplies = collect($postModels['subReply']->getPosts($spids))
+            ->map(fn(\App\Entity\Post\SubReply $entity) => SubReply::fromEntity($entity));
         $this->stopwatch->stop('fillWithSubRepliesFields');
 
         $this->stopwatch->start('parsePostContentProtoBufBytes');

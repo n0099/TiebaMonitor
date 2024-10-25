@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Entity\Post;
+namespace App\DTO\Post;
 
-abstract class PostWithContent extends Post
+trait PostWithContent
 {
     private ?array $content;
 
