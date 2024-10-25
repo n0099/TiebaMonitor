@@ -18,10 +18,10 @@
                 <PackageReference ExcludeAssets="compile" Include="codecracker.CSharp" Version="1.1.0" />
                 <PackageReference ExcludeAssets="compile" Include="CSharpGuidelinesAnalyzer" Version="3.8.5" />
                 <PackageReference ExcludeAssets="compile" Include="IDisposableAnalyzers" Version="4.0.8" />
-                <PackageReference ExcludeAssets="compile" Include="Meziantou.Analyzer" Version="2.0.175" />
+                <PackageReference ExcludeAssets="compile" Include="Meziantou.Analyzer" Version="2.0.176" />
                 <PackageReference ExcludeAssets="compile" Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="8.0.0" />
                 <PackageReference ExcludeAssets="compile" Include="Microsoft.VisualStudio.Threading.Analyzers" Version="17.11.20" />
-                <PackageReference ExcludeAssets="compile" Include="Roslynator.Analyzers" Version="4.12.8" />
+                <PackageReference ExcludeAssets="compile" Include="Roslynator.Analyzers" Version="4.12.9" />
                 <PackageReference ExcludeAssets="compile" Include="SharpSource" Version="1.25.2" />
                 <PackageReference ExcludeAssets="compile" Include="SonarAnalyzer.CSharp" Version="9.32.0.97167" />
                 <PackageReference ExcludeAssets="compile" Include="StyleCop.Analyzers.Unstable" Version="1.2.0.556" />
