@@ -10,17 +10,17 @@ use TbClient\Wrapper\UserIconWrapper;
 #[ORM\Table(name: '"tbmc_user"')]
 class User extends TimestampedEntity
 {
-    #[ORM\Column, ORM\Id] private int $uid;
-    #[ORM\Column] private ?string $name;
+    #[ORM\Column, ORM\Id] protected int $uid;
+    #[ORM\Column] protected ?string $name;
     /** @var ?resource */
     #[ORM\Column] protected $displayName;
-    #[ORM\Column] private string $portrait;
-    #[ORM\Column] private ?int $portraitUpdatedAt;
-    #[ORM\Column] private ?int $gender;
-    #[ORM\Column] private ?string $fansNickname;
+    #[ORM\Column] protected string $portrait;
+    #[ORM\Column] protected ?int $portraitUpdatedAt;
+    #[ORM\Column] protected ?int $gender;
+    #[ORM\Column] protected ?string $fansNickname;
     /** @var ?resource */
     #[ORM\Column] protected $icon;
-    #[ORM\Column] private ?string $ipGeolocation;
+    #[ORM\Column] protected ?string $ipGeolocation;
 
     public function getUid(): ?int
     {

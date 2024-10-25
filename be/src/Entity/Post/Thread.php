@@ -11,22 +11,22 @@ use TbClient\Post\Common\Zan;
 #[ORM\Entity(repositoryClass: ThreadRepository::class)]
 class Thread extends Post
 {
-    #[ORM\Column, ORM\Id] private int $tid;
-    #[ORM\Column] private int $threadType;
-    #[ORM\Column] private ?string $stickyType;
-    #[ORM\Column] private ?string $topicType;
-    #[ORM\Column] private ?int $isGood;
-    #[ORM\Column] private string $title;
-    #[ORM\Column] private int $latestReplyPostedAt;
-    #[ORM\Column] private ?int $latestReplierId;
-    #[ORM\Column] private ?int $replyCount;
-    #[ORM\Column] private ?int $viewCount;
-    #[ORM\Column] private ?int $shareCount;
+    #[ORM\Column, ORM\Id] protected int $tid;
+    #[ORM\Column] protected int $threadType;
+    #[ORM\Column] protected ?string $stickyType;
+    #[ORM\Column] protected ?string $topicType;
+    #[ORM\Column] protected ?int $isGood;
+    #[ORM\Column] protected string $title;
+    #[ORM\Column] protected int $latestReplyPostedAt;
+    #[ORM\Column] protected ?int $latestReplierId;
+    #[ORM\Column] protected ?int $replyCount;
+    #[ORM\Column] protected ?int $viewCount;
+    #[ORM\Column] protected ?int $shareCount;
     /** @var ?resource */
     #[ORM\Column] protected $zan;
     /** @var ?resource */
     #[ORM\Column] protected $geolocation;
-    #[ORM\Column] private ?string $authorPhoneType;
+    #[ORM\Column] protected ?string $authorPhoneType;
 
     public function getTid(): int
     {

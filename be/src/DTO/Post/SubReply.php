@@ -13,9 +13,9 @@ class SubReply extends SubReplyEntity
     public static function fromEntity(SubReplyEntity $entity): self
     {
         $dto = self::fromPostEntity($entity);
-        $dto->setTid($entity->getTid());
-        $dto->setPid($entity->getPid());
-        $dto->setSpid($entity->getSpid());
+        $dto->tid = $entity->tid;
+        $dto->pid = $entity->pid;
+        $dto->spid = $entity->spid;
         return $dto;
     }
 

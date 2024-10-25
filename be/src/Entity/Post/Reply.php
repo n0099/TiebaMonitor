@@ -10,14 +10,14 @@ use TbClient\Post\Common\Lbs;
 #[ORM\Entity(repositoryClass: ReplyRepository::class)]
 class Reply extends Post
 {
-    #[ORM\Column] private int $tid;
-    #[ORM\Column, ORM\Id] private int $pid;
-    #[ORM\Column] private int $floor;
-    #[ORM\Column] private ?int $subReplyCount;
-    #[ORM\Column] private ?int $isFold;
+    #[ORM\Column] protected int $tid;
+    #[ORM\Column, ORM\Id] protected int $pid;
+    #[ORM\Column] protected int $floor;
+    #[ORM\Column] protected ?int $subReplyCount;
+    #[ORM\Column] protected ?int $isFold;
     /** @var ?resource */
     #[ORM\Column] protected $geolocation;
-    #[ORM\Column] private ?int $signatureId;
+    #[ORM\Column] protected ?int $signatureId;
 
     public function getTid(): int
     {

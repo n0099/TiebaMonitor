@@ -12,11 +12,11 @@ trait Post
     public static function fromEntity(\App\Entity\Post\Post $entity): self
     {
         $dto = self::fromTimestampedEntity($entity);
-        $dto->setAuthorUid($entity->getAuthorUid());
-        $dto->setPostedAt($entity->getPostedAt());
-        $dto->setLastSeenAt($entity->getLastSeenAt());
-        $dto->setAgreeCount($entity->getAgreeCount());
-        $dto->setDisagreeCount($entity->getDisagreeCount());
+        $dto->authorUid = $entity->authorUid;
+        $dto->postedAt = $entity->postedAt;
+        $dto->lastSeenAt = $entity->lastSeenAt;
+        $dto->agreeCount = $entity->agreeCount;
+        $dto->disagreeCount = $entity->disagreeCount;
         return $dto;
     }
 }

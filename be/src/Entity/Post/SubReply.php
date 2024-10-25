@@ -8,9 +8,9 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: SubReplyRepository::class)]
 class SubReply extends Post
 {
-    #[ORM\Column] private int $tid;
-    #[ORM\Column] private int $pid;
-    #[ORM\Column, ORM\Id] private int $spid;
+    #[ORM\Column] protected int $tid;
+    #[ORM\Column] protected int $pid;
+    #[ORM\Column, ORM\Id] protected int $spid;
 
     public function getTid(): int
     {

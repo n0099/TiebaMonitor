@@ -12,13 +12,13 @@ class Reply extends ReplyEntity
     public static function fromEntity(ReplyEntity $entity): self
     {
         $dto = self::fromPostEntity($entity);
-        $dto->setTid($entity->getTid());
-        $dto->setPid($entity->getPid());
-        $dto->setFloor($entity->getFloor());
-        $dto->setSubReplyCount($entity->getSubReplyCount());
-        $dto->setIsFold($entity->getIsFold());
+        $dto->tid = $entity->tid;
+        $dto->pid = $entity->pid;
+        $dto->floor = $entity->floor;
+        $dto->subReplyCount = $entity->subReplyCount;
+        $dto->isFold = $entity->isFold;
         $dto->geolocation = $entity->geolocation;
-        $dto->setSignatureId($entity->getSignatureId());
+        $dto->signatureId = $entity->signatureId;
         return $dto;
     }
 }

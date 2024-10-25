@@ -11,20 +11,20 @@ class Thread extends ThreadEntity
     public static function fromEntity(ThreadEntity $entity): self
     {
         $dto = self::fromPostEntity($entity);
-        $dto->setTid($entity->getTid());
-        $dto->setThreadType($entity->getThreadType());
-        $dto->setStickyType($entity->getStickyType());
-        $dto->setTopicType($entity->getTopicType());
-        $dto->setIsGood($entity->getIsGood());
-        $dto->setTitle($entity->getTitle());
-        $dto->setLatestReplyPostedAt($entity->getLatestReplyPostedAt());
-        $dto->setLatestReplierId($entity->getLatestReplierId());
-        $dto->setReplyCount($entity->getReplyCount());
-        $dto->setViewCount($entity->getViewCount());
-        $dto->setShareCount($entity->getShareCount());
+        $dto->tid = $entity->tid;
+        $dto->threadType = $entity->threadType;
+        $dto->stickyType = $entity->stickyType;
+        $dto->topicType = $entity->topicType;
+        $dto->isGood = $entity->isGood;
+        $dto->title = $entity->title;
+        $dto->latestReplyPostedAt = $entity->latestReplyPostedAt;
+        $dto->latestReplierId = $entity->latestReplierId;
+        $dto->replyCount = $entity->replyCount;
+        $dto->viewCount = $entity->viewCount;
+        $dto->shareCount = $entity->shareCount;
         $dto->zan = $entity->zan;
         $dto->geolocation = $entity->geolocation;
-        $dto->setAuthorPhoneType($entity->getAuthorPhoneType());
+        $dto->authorPhoneType = $entity->authorPhoneType;
         return $dto;
     }
 }

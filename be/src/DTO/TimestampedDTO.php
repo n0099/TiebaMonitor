@@ -9,8 +9,8 @@ trait TimestampedDTO
     public static function fromEntity(TimestampedEntity $entity): self
     {
         $dto = new self();
-        $dto->setCreatedAt($entity->getCreatedAt());
-        $dto->setUpdatedAt($entity->getUpdatedAt());
+        $dto->createdAt = $entity->createdAt;
+        $dto->updatedAt = $entity->updatedAt;
         return $dto;
     }
 }

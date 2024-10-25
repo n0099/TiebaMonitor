@@ -35,15 +35,15 @@ class User extends UserEntity
     public static function fromEntity(UserEntity $entity): self
     {
         $dto = self::fromTimestampedEntity($entity);
-        $dto->setUid($entity->getUid());
-        $dto->setName($entity->getName());
+        $dto->uid = $entity->uid;
+        $dto->name = $entity->name;
         $dto->displayName = $entity->displayName;
-        $dto->setPortrait($entity->getPortrait());
-        $dto->setPortraitUpdatedAt($entity->getPortraitUpdatedAt());
-        $dto->setGender($entity->getGender());
-        $dto->setFansNickname($entity->getFansNickname());
+        $dto->portrait = $entity->portrait;
+        $dto->portraitUpdatedAt = $entity->portraitUpdatedAt;
+        $dto->gender = $entity->gender;
+        $dto->fansNickname = $entity->fansNickname;
         $dto->icon = $entity->icon;
-        $dto->setIpGeolocation($entity->getIpGeolocation());
+        $dto->ipGeolocation = $entity->ipGeolocation;
         return $dto;
     }
 }
