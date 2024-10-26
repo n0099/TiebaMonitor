@@ -10,7 +10,8 @@ interface SortablePost
 
     public function setIsMatchQuery(bool $isMatchQuery): void;
 
-    #[Ignore] public function getSortingKey(): mixed;
+    #[Ignore]
+    public function getSortingKey(): mixed;
 
     public function setSortingKey(mixed $sortingKey): void;
 }

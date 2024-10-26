@@ -22,7 +22,8 @@ trait Post
         $this->isMatchQuery = $isMatchQuery;
     }
 
-    #[Ignore] public function getSortingKey(): mixed
+    #[Ignore]
+    public function getSortingKey(): mixed
     {
         return $this->sortingKey;
     }
