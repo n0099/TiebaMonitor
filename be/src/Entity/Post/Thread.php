@@ -33,9 +33,10 @@ class Thread extends Post
         return $this->tid;
     }
 
-    public function setTid(int $tid): void
+    public function setTid(int $value): self
     {
-        $this->tid = $tid;
+        $this->tid = $value;
+        return $this;
     }
 
     public function getThreadType(): int
@@ -43,9 +44,10 @@ class Thread extends Post
         return $this->threadType;
     }
 
-    public function setThreadType(int $threadType): void
+    public function setThreadType(int $value): self
     {
-        $this->threadType = $threadType;
+        $this->threadType = $value;
+        return $this;
     }
 
     public function getStickyType(): ?string
@@ -53,9 +55,10 @@ class Thread extends Post
         return $this->stickyType;
     }
 
-    public function setStickyType(?string $stickyType): void
+    public function setStickyType(?string $value): self
     {
-        $this->stickyType = $stickyType;
+        $this->stickyType = $value;
+        return $this;
     }
 
     public function getTopicType(): ?string
@@ -63,9 +66,10 @@ class Thread extends Post
         return $this->topicType;
     }
 
-    public function setTopicType(?string $topicType): void
+    public function setTopicType(?string $value): self
     {
-        $this->topicType = $topicType;
+        $this->topicType = $value;
+        return $this;
     }
 
     public function getIsGood(): ?int
@@ -73,9 +77,10 @@ class Thread extends Post
         return $this->isGood;
     }
 
-    public function setIsGood(?int $isGood): void
+    public function setIsGood(?int $value): self
     {
-        $this->isGood = $isGood;
+        $this->isGood = $value;
+        return $this;
     }
 
     public function getTitle(): string
@@ -83,9 +88,10 @@ class Thread extends Post
         return $this->title;
     }
 
-    public function setTitle(string $title): void
+    public function setTitle(string $value): self
     {
-        $this->title = $title;
+        $this->title = $value;
+        return $this;
     }
 
     public function getLatestReplyPostedAt(): int
@@ -93,9 +99,10 @@ class Thread extends Post
         return $this->latestReplyPostedAt;
     }
 
-    public function setLatestReplyPostedAt(int $latestReplyPostedAt): void
+    public function setLatestReplyPostedAt(int $value): self
     {
-        $this->latestReplyPostedAt = $latestReplyPostedAt;
+        $this->latestReplyPostedAt = $value;
+        return $this;
     }
 
     public function getLatestReplierId(): ?int
@@ -103,9 +110,10 @@ class Thread extends Post
         return $this->latestReplierId;
     }
 
-    public function setLatestReplierId(?int $latestReplierId): void
+    public function setLatestReplierId(?int $value): self
     {
-        $this->latestReplierId = $latestReplierId;
+        $this->latestReplierId = $value;
+        return $this;
     }
 
     public function getReplyCount(): int
@@ -113,9 +121,10 @@ class Thread extends Post
         return $this->replyCount ?? 0;
     }
 
-    public function setReplyCount(?int $replyCount): void
+    public function setReplyCount(?int $value): self
     {
-        $this->replyCount = $replyCount;
+        $this->replyCount = $value;
+        return $this;
     }
 
     public function getViewCount(): int
@@ -123,9 +132,10 @@ class Thread extends Post
         return $this->viewCount ?? 0;
     }
 
-    public function setViewCount(?int $viewCount): void
+    public function setViewCount(?int $value): self
     {
-        $this->viewCount = $viewCount;
+        $this->viewCount = $value;
+        return $this;
     }
 
     public function getShareCount(): int
@@ -133,9 +143,10 @@ class Thread extends Post
         return $this->shareCount ?? 0;
     }
 
-    public function setShareCount(?int $shareCount): void
+    public function setShareCount(?int $value): self
     {
-        $this->shareCount = $shareCount;
+        $this->shareCount = $value;
+        return $this;
     }
 
     public function getZan(): ?array
@@ -144,9 +155,10 @@ class Thread extends Post
     }
 
     /** @param ?resource $zan */
-    public function setZan($zan): void
+    public function setZan($zan): self
     {
         $this->zan = $zan;
+        return $this;
     }
 
     public function getGeolocation(): ?array
@@ -155,9 +167,10 @@ class Thread extends Post
     }
 
     /** @param ?resource $geolocation */
-    public function setGeolocation($geolocation): void
+    public function setGeolocation($geolocation): self
     {
         $this->geolocation = $geolocation;
+        return $this;
     }
 
     public function getAuthorPhoneType(): ?string
@@ -165,8 +178,9 @@ class Thread extends Post
         return $this->authorPhoneType;
     }
 
-    public function setAuthorPhoneType(?string $authorPhoneType): void
+    public function setAuthorPhoneType(?string $value): self
     {
-        $this->authorPhoneType = $authorPhoneType;
+        $this->authorPhoneType = $value;
+        return $this;
     }
 }

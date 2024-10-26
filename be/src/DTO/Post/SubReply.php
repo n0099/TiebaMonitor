@@ -25,5 +25,8 @@ class SubReply extends SubReplyEntity implements SortablePost
         return true;
     }
 
-    public function setIsMatchQuery(bool $isMatchQuery): void {}
+    public function setIsMatchQuery(bool $value): self
+    {
+        return $this;
+    }
 }

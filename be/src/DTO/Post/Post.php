@@ -17,9 +17,10 @@ trait Post
         return $this->isMatchQuery;
     }
 
-    public function setIsMatchQuery(bool $isMatchQuery): void
+    public function setIsMatchQuery(bool $value): self
     {
-        $this->isMatchQuery = $isMatchQuery;
+        $this->isMatchQuery = $value;
+        return $this;
     }
 
     #[Ignore]
@@ -28,9 +29,10 @@ trait Post
         return $this->sortingKey;
     }
 
-    public function setSortingKey(mixed $sortingKey): void
+    public function setSortingKey(mixed $value): self
     {
-        $this->sortingKey = $sortingKey;
+        $this->sortingKey = $value;
+        return $this;
     }
 
     public static function fromEntity(\App\Entity\Post\Post $entity): self

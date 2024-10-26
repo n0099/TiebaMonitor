@@ -17,9 +17,10 @@ class User extends UserEntity
         return $this->currentForumModerator;
     }
 
-    public function setCurrentForumModerator(?ForumModerator $currentForumModerator): void
+    public function setCurrentForumModerator(?ForumModerator $value): self
     {
-        $this->currentForumModerator = $currentForumModerator;
+        $this->currentForumModerator = $value;
+        return $this;
     }
 
     public function getCurrentAuthorExpGrade(): ?AuthorExpGrade
@@ -27,9 +28,10 @@ class User extends UserEntity
         return $this->currentAuthorExpGrade;
     }
 
-    public function setCurrentAuthorExpGrade(?AuthorExpGrade $currentAuthorExpGrade): void
+    public function setCurrentAuthorExpGrade(?AuthorExpGrade $value): self
     {
-        $this->currentAuthorExpGrade = $currentAuthorExpGrade;
+        $this->currentAuthorExpGrade = $value;
+        return $this;
     }
 
     public static function fromEntity(UserEntity $entity): self

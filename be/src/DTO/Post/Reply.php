@@ -17,9 +17,9 @@ class Reply extends ReplyEntity implements SortablePost
         return $this->subReplies;
     }
 
-    public function setSubReplies(Collection $subReplies): self
+    public function setSubReplies(Collection $value): self
     {
-        $this->subReplies = $subReplies;
+        $this->subReplies = $value;
         return $this;
     }
 

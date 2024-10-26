@@ -20,9 +20,10 @@ class LatestReplier extends TimestampedEntity
         return $this->id;
     }
 
-    public function setId(int $id): void
+    public function setId(int $value): self
     {
-        $this->id = $id;
+        $this->id = $value;
+        return $this;
     }
 
     public function getUid(): ?int
@@ -30,9 +31,10 @@ class LatestReplier extends TimestampedEntity
         return $this->uid;
     }
 
-    public function setUid(?int $uid): void
+    public function setUid(?int $value): self
     {
-        $this->uid = $uid;
+        $this->uid = $value;
+        return $this;
     }
 
     public function getName(): ?string
@@ -40,9 +42,10 @@ class LatestReplier extends TimestampedEntity
         return $this->name;
     }
 
-    public function setName(?string $name): void
+    public function setName(?string $value): self
     {
-        $this->name = $name;
+        $this->name = $value;
+        return $this;
     }
 
     public function getDisplayName(): ?string
@@ -51,8 +54,9 @@ class LatestReplier extends TimestampedEntity
     }
 
     /** @param ?resource $displayName */
-    public function setDisplayName($displayName): void
+    public function setDisplayName($displayName): self
     {
         $this->displayName = $displayName;
+        return $this;
     }
 }

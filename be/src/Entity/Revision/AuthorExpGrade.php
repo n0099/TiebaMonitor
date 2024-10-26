@@ -20,9 +20,10 @@ class AuthorExpGrade
         return $this->discoveredAt;
     }
 
-    public function setDiscoveredAt(int $discoveredAt): void
+    public function setDiscoveredAt(int $value): self
     {
-        $this->discoveredAt = $discoveredAt;
+        $this->discoveredAt = $value;
+        return $this;
     }
 
     public function getFid(): int
@@ -30,9 +31,10 @@ class AuthorExpGrade
         return $this->fid;
     }
 
-    public function setFid(int $fid): void
+    public function setFid(int $value): self
     {
-        $this->fid = $fid;
+        $this->fid = $value;
+        return $this;
     }
 
     public function getUid(): int
@@ -40,9 +42,10 @@ class AuthorExpGrade
         return $this->uid;
     }
 
-    public function setUid(int $uid): void
+    public function setUid(int $value): self
     {
-        $this->uid = $uid;
+        $this->uid = $value;
+        return $this;
     }
 
     public function getTriggeredBy(): string
@@ -50,9 +53,10 @@ class AuthorExpGrade
         return $this->triggeredBy;
     }
 
-    public function setTriggeredBy(string $triggeredBy): void
+    public function setTriggeredBy(string $value): self
     {
-        $this->triggeredBy = $triggeredBy;
+        $this->triggeredBy = $value;
+        return $this;
     }
 
     public function getAuthorExpGrade(): int
@@ -60,8 +64,9 @@ class AuthorExpGrade
         return $this->authorExpGrade;
     }
 
-    public function setAuthorExpGrade(int $authorExpGrade): void
+    public function setAuthorExpGrade(int $value): self
     {
-        $this->authorExpGrade = $authorExpGrade;
+        $this->authorExpGrade = $value;
+        return $this;
     }
 }

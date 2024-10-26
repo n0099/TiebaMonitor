@@ -27,9 +27,10 @@ class User extends TimestampedEntity
         return $this->uid;
     }
 
-    public function setUid(int $uid): void
+    public function setUid(int $value): self
     {
-        $this->uid = $uid;
+        $this->uid = $value;
+        return $this;
     }
 
     public function getName(): ?string
@@ -37,9 +38,10 @@ class User extends TimestampedEntity
         return $this->name;
     }
 
-    public function setName(?string $name): void
+    public function setName(?string $value): self
     {
-        $this->name = $name;
+        $this->name = $value;
+        return $this;
     }
 
     public function getDisplayName(): ?string
@@ -48,9 +50,10 @@ class User extends TimestampedEntity
     }
 
     /** @param ?resource $displayName */
-    public function setDisplayName($displayName): void
+    public function setDisplayName($displayName): self
     {
         $this->displayName = $displayName;
+        return $this;
     }
 
     public function getPortrait(): string
@@ -58,9 +61,10 @@ class User extends TimestampedEntity
         return $this->portrait;
     }
 
-    public function setPortrait(string $portrait): void
+    public function setPortrait(string $value): self
     {
-        $this->portrait = $portrait;
+        $this->portrait = $value;
+        return $this;
     }
 
     public function getPortraitUpdatedAt(): ?int
@@ -68,9 +72,10 @@ class User extends TimestampedEntity
         return $this->portraitUpdatedAt;
     }
 
-    public function setPortraitUpdatedAt(?int $portraitUpdatedAt): void
+    public function setPortraitUpdatedAt(?int $value): self
     {
-        $this->portraitUpdatedAt = $portraitUpdatedAt;
+        $this->portraitUpdatedAt = $value;
+        return $this;
     }
 
     public function getGender(): ?int
@@ -78,9 +83,10 @@ class User extends TimestampedEntity
         return $this->gender;
     }
 
-    public function setGender(?int $gender): void
+    public function setGender(?int $value): self
     {
-        $this->gender = $gender;
+        $this->gender = $value;
+        return $this;
     }
 
     public function getFansNickname(): ?string
@@ -88,9 +94,10 @@ class User extends TimestampedEntity
         return $this->fansNickname;
     }
 
-    public function setFansNickname(?string $fansNickname): void
+    public function setFansNickname(?string $value): self
     {
-        $this->fansNickname = $fansNickname;
+        $this->fansNickname = $value;
+        return $this;
     }
 
     public function getIcon(): ?array
@@ -99,9 +106,10 @@ class User extends TimestampedEntity
     }
 
     /** @param ?resource $icon */
-    public function setIcon($icon): void
+    public function setIcon($icon): self
     {
         $this->icon = $icon;
+        return $this;
     }
 
     public function getIpGeolocation(): ?string
@@ -109,8 +117,9 @@ class User extends TimestampedEntity
         return $this->ipGeolocation;
     }
 
-    public function setIpGeolocation(?string $ipGeolocation): void
+    public function setIpGeolocation(?string $value): self
     {
-        $this->ipGeolocation = $ipGeolocation;
+        $this->ipGeolocation = $value;
+        return $this;
     }
 }

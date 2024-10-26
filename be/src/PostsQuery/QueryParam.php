@@ -31,8 +31,9 @@ class QueryParam
         return $this->subParams[$name] ?? null;
     }
 
-    public function setSub(string $name, array|string|int $value): void
+    public function setSub(string $name, array|string|int $value): self
     {
         $this->subParams[$name] = $value;
+        return $this;
     }
 }

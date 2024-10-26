@@ -21,11 +21,11 @@ class ParamsValidator
         return $this->params;
     }
 
-    /** @param array[] $params */
-    public function setParams(array $params): static
+    /** @param array[] $value */
+    public function setParams(array $value): static
     {
-        array_map($this->validateParamValue(...), $params);
-        $this->params = new QueryParams($params);
+        array_map($this->validateParamValue(...), $value);
+        $this->params = new QueryParams($value);
         $this->validate40001();
         $this->validate40005();
         return $this;

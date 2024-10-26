@@ -8,10 +8,10 @@ interface SortablePost
 {
     public function getIsMatchQuery(): bool;
 
-    public function setIsMatchQuery(bool $isMatchQuery): void;
+    public function setIsMatchQuery(bool $value): self;
 
     #[Ignore]
     public function getSortingKey(): mixed;
 
-    public function setSortingKey(mixed $sortingKey): void;
+    public function setSortingKey(mixed $value): self;
 }

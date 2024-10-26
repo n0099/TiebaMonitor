@@ -11,8 +11,9 @@ trait PostWithContent
         return $this->content;
     }
 
-    public function setContent(?array $content): void
+    public function setContent(?array $value): self
     {
-        $this->content = $content;
+        $this->content = $value;
+        return $this;
     }
 }

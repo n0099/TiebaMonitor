@@ -51,9 +51,10 @@ class QueryParams
         return $this->pick($name)[0]->value ?? null;
     }
 
-    public function setUniqueParamValue(string $name, mixed $value): void
+    public function setUniqueParamValue(string $name, mixed $value): self
     {
         $this->params[$this->getParamsIndexByName($name)[0]]->value = $value;
+        return $this;
     }
 
     /** @return int[] */

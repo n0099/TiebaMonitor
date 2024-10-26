@@ -15,8 +15,9 @@ class SubReplyContent extends PostContent
         return $this->spid;
     }
 
-    public function setSpid(int $spid): void
+    public function setSpid(int $value): self
     {
-        $this->spid = $spid;
+        $this->spid = $value;
+        return $this;
     }
 }

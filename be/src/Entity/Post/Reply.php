@@ -24,9 +24,10 @@ class Reply extends Post
         return $this->tid;
     }
 
-    public function setTid(int $tid): void
+    public function setTid(int $value): self
     {
-        $this->tid = $tid;
+        $this->tid = $value;
+        return $this;
     }
 
     public function getPid(): int
@@ -34,9 +35,10 @@ class Reply extends Post
         return $this->pid;
     }
 
-    public function setPid(int $pid): void
+    public function setPid(int $value): self
     {
-        $this->pid = $pid;
+        $this->pid = $value;
+        return $this;
     }
 
     public function getFloor(): int
@@ -44,9 +46,10 @@ class Reply extends Post
         return $this->floor;
     }
 
-    public function setFloor(int $floor): void
+    public function setFloor(int $value): self
     {
-        $this->floor = $floor;
+        $this->floor = $value;
+        return $this;
     }
 
     public function getSubReplyCount(): int
@@ -54,9 +57,10 @@ class Reply extends Post
         return $this->subReplyCount ?? 0;
     }
 
-    public function setSubReplyCount(?int $subReplyCount): void
+    public function setSubReplyCount(?int $value): self
     {
-        $this->subReplyCount = $subReplyCount;
+        $this->subReplyCount = $value;
+        return $this;
     }
 
     public function getIsFold(): ?int
@@ -64,9 +68,10 @@ class Reply extends Post
         return $this->isFold;
     }
 
-    public function setIsFold(?int $isFold): void
+    public function setIsFold(?int $value): self
     {
-        $this->isFold = $isFold;
+        $this->isFold = $value;
+        return $this;
     }
 
     public function getGeolocation(): ?array
@@ -75,9 +80,10 @@ class Reply extends Post
     }
 
     /** @param ?resource $geolocation */
-    public function setGeolocation($geolocation): void
+    public function setGeolocation($geolocation): self
     {
         $this->geolocation = $geolocation;
+        return $this;
     }
 
     public function getSignatureId(): ?int
@@ -85,8 +91,9 @@ class Reply extends Post
         return $this->signatureId;
     }
 
-    public function setSignatureId(?int $signatureId): void
+    public function setSignatureId(?int $value): self
     {
-        $this->signatureId = $signatureId;
+        $this->signatureId = $value;
+        return $this;
     }
 }

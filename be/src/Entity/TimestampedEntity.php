@@ -15,9 +15,10 @@ abstract class TimestampedEntity
         return $this->createdAt;
     }
 
-    public function setCreatedAt(int $createdAt): void
+    public function setCreatedAt(int $value): self
     {
-        $this->createdAt = $createdAt;
+        $this->createdAt = $value;
+        return $this;
     }
 
     public function getUpdatedAt(): ?int
@@ -25,8 +26,9 @@ abstract class TimestampedEntity
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(?int $updatedAt): void
+    public function setUpdatedAt(?int $value): self
     {
-        $this->updatedAt = $updatedAt;
+        $this->updatedAt = $value;
+        return $this;
     }
 }

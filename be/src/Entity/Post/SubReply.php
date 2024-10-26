@@ -17,9 +17,10 @@ class SubReply extends Post
         return $this->tid;
     }
 
-    public function setTid(int $tid): void
+    public function setTid(int $value): self
     {
-        $this->tid = $tid;
+        $this->tid = $value;
+        return $this;
     }
 
     public function getPid(): int
@@ -27,9 +28,10 @@ class SubReply extends Post
         return $this->pid;
     }
 
-    public function setPid(int $pid): void
+    public function setPid(int $value): self
     {
-        $this->pid = $pid;
+        $this->pid = $value;
+        return $this;
     }
 
     public function getSpid(): int
@@ -37,8 +39,9 @@ class SubReply extends Post
         return $this->spid;
     }
 
-    public function setSpid(int $spid): void
+    public function setSpid(int $value): self
     {
-        $this->spid = $spid;
+        $this->spid = $value;
+        return $this;
     }
 }

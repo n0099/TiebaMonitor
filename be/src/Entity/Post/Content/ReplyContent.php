@@ -15,8 +15,9 @@ class ReplyContent extends PostContent
         return $this->pid;
     }
 
-    public function setPid(int $pid): void
+    public function setPid(int $value): self
     {
-        $this->pid = $pid;
+        $this->pid = $value;
+        return $this;
     }
 }

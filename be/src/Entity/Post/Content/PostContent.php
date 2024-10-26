@@ -18,8 +18,9 @@ abstract class PostContent
     }
 
     /** @param ?resource $protoBufBytes */
-    public function setProtoBufBytes($protoBufBytes): void
+    public function setProtoBufBytes($protoBufBytes): self
     {
         $this->protoBufBytes = $protoBufBytes;
+        return $this;
     }
 }

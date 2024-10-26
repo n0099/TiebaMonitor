@@ -15,13 +15,15 @@ abstract readonly class BaseQuery
 
     abstract public function query(QueryParams $params, ?string $cursor): void;
 
-    protected function setOrderByField(string $orderByField): void
+    protected function setOrderByField(string $value): self
     {
-        $this->orderByField = $orderByField;
+        $this->orderByField = $value;
+        return $this;
     }
 
-    protected function setOrderByDesc(bool $orderByDesc): void
+    protected function setOrderByDesc(bool $value): self
     {
-        $this->orderByDesc = $orderByDesc;
+        $this->orderByDesc = $value;
+        return $this;
     }
 }

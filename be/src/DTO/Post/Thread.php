@@ -16,9 +16,9 @@ class Thread extends ThreadEntity implements SortablePost
         return $this->replies;
     }
 
-    public function setReplies(Collection $replies): self
+    public function setReplies(Collection $value): self
     {
-        $this->replies = $replies;
+        $this->replies = $value;
         return $this;
     }
 

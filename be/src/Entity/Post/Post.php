@@ -19,9 +19,10 @@ abstract class Post extends TimestampedEntity
         return $this->authorUid;
     }
 
-    public function setAuthorUid(int $authorUid): void
+    public function setAuthorUid(int $value): self
     {
-        $this->authorUid = $authorUid;
+        $this->authorUid = $value;
+        return $this;
     }
 
     public function getPostedAt(): int
@@ -29,9 +30,10 @@ abstract class Post extends TimestampedEntity
         return $this->postedAt;
     }
 
-    public function setPostedAt(int $postedAt): void
+    public function setPostedAt(int $value): self
     {
-        $this->postedAt = $postedAt;
+        $this->postedAt = $value;
+        return $this;
     }
 
     public function getLastSeenAt(): ?int
@@ -39,9 +41,10 @@ abstract class Post extends TimestampedEntity
         return $this->lastSeenAt;
     }
 
-    public function setLastSeenAt(?int $lastSeenAt): void
+    public function setLastSeenAt(?int $value): self
     {
-        $this->lastSeenAt = $lastSeenAt;
+        $this->lastSeenAt = $value;
+        return $this;
     }
 
     public function getAgreeCount(): int
@@ -49,9 +52,10 @@ abstract class Post extends TimestampedEntity
         return $this->agreeCount ?? 0;
     }
 
-    public function setAgreeCount(?int $agreeCount): void
+    public function setAgreeCount(?int $value): self
     {
-        $this->agreeCount = $agreeCount;
+        $this->agreeCount = $value;
+        return $this;
     }
 
     public function getDisagreeCount(): int
@@ -59,8 +63,9 @@ abstract class Post extends TimestampedEntity
         return $this->disagreeCount ?? 0;
     }
 
-    public function setDisagreeCount(?int $disagreeCount): void
+    public function setDisagreeCount(?int $value): self
     {
-        $this->disagreeCount = $disagreeCount;
+        $this->disagreeCount = $value;
+        return $this;
     }
 }

@@ -18,9 +18,10 @@ class Forum
         return $this->fid;
     }
 
-    public function setFid(int $fid): void
+    public function setFid(int $value): self
     {
-        $this->fid = $fid;
+        $this->fid = $value;
+        return $this;
     }
 
     public function getName(): string
@@ -28,9 +29,10 @@ class Forum
         return $this->name;
     }
 
-    public function setName(string $name): void
+    public function setName(string $value): self
     {
-        $this->name = $name;
+        $this->name = $value;
+        return $this;
     }
 
     public function isCrawling(): bool
@@ -38,8 +40,9 @@ class Forum
         return $this->isCrawling;
     }
 
-    public function setIsCrawling(bool $isCrawling): void
+    public function setIsCrawling(bool $value): self
     {
-        $this->isCrawling = $isCrawling;
+        $this->isCrawling = $value;
+        return $this;
     }
 }

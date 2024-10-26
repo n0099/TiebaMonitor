@@ -19,9 +19,10 @@ class ForumModerator
         return $this->discoveredAt;
     }
 
-    public function setDiscoveredAt(int $discoveredAt): void
+    public function setDiscoveredAt(int $value): self
     {
-        $this->discoveredAt = $discoveredAt;
+        $this->discoveredAt = $value;
+        return $this;
     }
 
     public function getFid(): int
@@ -29,9 +30,10 @@ class ForumModerator
         return $this->fid;
     }
 
-    public function setFid(int $fid): void
+    public function setFid(int $value): self
     {
-        $this->fid = $fid;
+        $this->fid = $value;
+        return $this;
     }
 
     public function getPortrait(): string
@@ -39,9 +41,10 @@ class ForumModerator
         return $this->portrait;
     }
 
-    public function setPortrait(string $portrait): void
+    public function setPortrait(string $value): self
     {
-        $this->portrait = $portrait;
+        $this->portrait = $value;
+        return $this;
     }
 
     public function getModeratorTypes(): string
@@ -49,8 +52,9 @@ class ForumModerator
         return $this->moderatorTypes;
     }
 
-    public function setModeratorTypes(string $moderatorTypes): void
+    public function setModeratorTypes(string $value): self
     {
-        $this->moderatorTypes = $moderatorTypes;
+        $this->moderatorTypes = $value;
+        return $this;
     }
 }
