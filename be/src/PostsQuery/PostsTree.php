@@ -2,6 +2,7 @@
 
 namespace App\PostsQuery;
 
+use App\DTO\Post\SortablePost;
 use App\DTO\PostKey\Reply as ReplyKey;
 use App\DTO\PostKey\SubReply as SubReplyKey;
 use App\DTO\PostKey\Thread as ThreadKey;
@@ -13,7 +14,6 @@ use App\DTO\Post\Thread;
 use App\Helper;
 use App\Repository\Post\PostRepositoryFactory;
 use Illuminate\Support\Collection;
-use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Component\Stopwatch\Stopwatch;
 
 /** @psalm-import-type PostsKeyByTypePluralName from CursorCodec */
@@ -29,7 +29,6 @@ readonly class PostsTree
     public Collection $subReplies;
 
     public function __construct(
-        private NormalizerInterface $normalizer,
         private Stopwatch $stopwatch,
         private PostRepositoryFactory $postRepositoryFactory,
     ) {}
@@ -106,7 +105,7 @@ readonly class PostsTree
 
     /**
      * @phpcs:ignore Generic.Files.LineLength.TooLong
-     * @return Collection<int, Collection<string, mixed|Collection<int, Collection<string, mixed|Collection<int, Collection<string, mixed>>>>>>
+     * @return Collection<int, Thread>
      * @SuppressWarnings(PHPMD.CamelCaseParameterName)
      */
     public function nestPostsWithParent(): Collection
@@ -115,17 +114,12 @@ readonly class PostsTree
 
         $replies = $this->replies->groupBy(fn(Reply $reply) => $reply->getTid());
         $subReplies = $this->subReplies->groupBy(fn(SubReply $subReply) => $subReply->getPid());
-        $ret = $this->threads
-            ->map(fn(Thread $thread) => [
-                ...$this->normalizer->normalize($thread),
-                'replies' => $replies
-                    ->get($thread->getTid(), collect())
-                    ->map(fn(Reply $reply) => [
-                        ...$this->normalizer->normalize($reply),
-                        'subReplies' => $this->normalizer->normalize($subReplies->get($reply->getPid(), collect())),
-                    ]),
-            ])
-            ->recursive();
+        $ret = $this->threads->map(fn(Thread $thread) =>
+            $thread->setReplies($replies
+                ->get($thread->getTid(), collect())
+                ->map(fn(Reply $reply) =>
+                    $reply->setSubReplies($subReplies->get($reply->getPid(), collect())))
+            ));
 
         $this->stopwatch->stop('nestPostsWithParent');
         return $ret;
@@ -133,95 +127,83 @@ readonly class PostsTree
 
     /**
      * @phpcs:ignore Generic.Files.LineLength.TooLong
-     * @param Collection<int, Collection<string, mixed|Collection<int, Collection<string, mixed|Collection<int, Collection<string, mixed>>>>>> $nestedPosts
+     * @param Collection<int, Thread> $nestedPosts
      * @return list<array<string, mixed|list<array<string, mixed|list<array<string, mixed>>>>>>
      */
     public function reOrderNestedPosts(
         Collection $nestedPosts,
         string $orderByField,
         bool $orderByDesc,
-        bool $shouldRemoveSortingKey = true,
     ): array {
         $this->stopwatch->start('reOrderNestedPosts');
 
         /**
-         * @param Collection<int, Collection<string, mixed|Collection<int, Collection<string, mixed>>>> $curPost
-         * @param string $childPostTypePluralName
-         * @return Collection<int, Collection<string, mixed|Collection<int, Collection<string, mixed>>>>
+         * @template T of Thread|Reply
+         * @param T $curPost
+         * @param Collection<(T is Thread ? Reply : (T is Reply ? SubReply : never))> $childPosts
+         * @return T
          */
         $setSortingKeyFromCurrentAndChildPosts = static function (
-            Collection $curPost,
-            string $childPostTypePluralName,
-        ) use ($orderByField, $orderByDesc): Collection {
-            /** @var Collection<int, Collection<string, mixed>> $childPosts sorted child posts */
-            $childPosts = $curPost[$childPostTypePluralName];
-            $curPost[$childPostTypePluralName] = $childPosts->values(); // reset keys
-
+            Thread|Reply $curPost,
+            Collection $childPosts,
+        ) use ($orderByField, $orderByDesc): Thread|Reply {
             // use the topmost value between sorting key or value of orderBy field within its child posts
+            /* @var ?(T is Thread ? Reply : (T is Reply ? SubReply : never)) $firstChildPost */
+            $firstChildPost = $childPosts->first();
             $curAndChildSortingKeys = collect([
                 // value of orderBy field in the first sorted child post that isMatchQuery after previous sorting
                 $childPosts // sub replies won't have isMatchQuery
-                ->filter(static fn(Collection $p) => ($p['isMatchQuery'] ?? true) === true)
+                    ->filter(static fn(SortablePost $p) => $p->getIsMatchQuery() === true)
                     // if no child posts matching the query, use null as the sorting key
-                    ->first()[$orderByField] ?? null,
+                    ->first()
+                    ?->{"get$orderByField"}(),
                 // sorting key from the first sorted child posts
                 // not requiring isMatchQuery since a child post without isMatchQuery
                 // might have its own child posts with isMatchQuery
                 // and its sortingKey would be selected from its own child posts
-                $childPosts->first()['sortingKey'] ?? null,
+                $firstChildPost?->getSortingKey(),
             ]);
-            if ($curPost['isMatchQuery'] === true) {
+            if ($curPost->getIsMatchQuery() === true) {
                 // also try to use the value of orderBy field in current post
-                $curAndChildSortingKeys->push($curPost[$orderByField]);
+                $curAndChildSortingKeys->push($curPost->{"get$orderByField"}());
             }
 
             // Collection->filter() will remove falsy values like null
             $curAndChildSortingKeys = $curAndChildSortingKeys->filter()->sort();
-            $curPost['sortingKey'] = $orderByDesc
+            $curPost->setSortingKey($orderByDesc
                 ? $curAndChildSortingKeys->last()
-                : $curAndChildSortingKeys->first();
+                : $curAndChildSortingKeys->first());
 
             return $curPost;
         };
         $sortBySortingKey = static fn(Collection $posts): Collection => $posts
-            ->sortBy(fn(Collection $i) => $i['sortingKey'], descending: $orderByDesc);
-        $removeSortingKey = $shouldRemoveSortingKey
-            ? /** @psalm-return Collection<array-key, Collection> */
-            static fn(Collection $posts): Collection => $posts
-                ->map(fn(Collection $i) => $i->except('sortingKey'))
-            : static fn($i) => $i;
-        $ret = $removeSortingKey($sortBySortingKey(
+            ->sortBy(fn(SortablePost $post) => $post->getSortingKey(), descending: $orderByDesc);
+        $ret = $sortBySortingKey(
             $nestedPosts->map(
-                /**
-                 * @param Collection{replies: Collection} $thread
-                 * @return Collection{replies: Collection}
-                 */
-                function (Collection $thread) use (
+                function (Thread $thread) use (
                     $orderByField,
                     $orderByDesc,
                     $sortBySortingKey,
-                    $removeSortingKey,
                     $setSortingKeyFromCurrentAndChildPosts
-                ) {
-                    $thread['replies'] = $sortBySortingKey($thread['replies']->map(
-                        /**
-                         * @param Collection{subReplies: Collection} $reply
-                         * @return Collection{subReplies: Collection}
-                         */
-                        function (Collection $reply) use ($orderByField, $orderByDesc, $setSortingKeyFromCurrentAndChildPosts) {
-                            $reply['subReplies'] = $reply['subReplies']->sortBy(
-                                fn(Collection $subReplies) => $subReplies->get($orderByField),
+                ): Thread {
+                    $thread->setReplies($sortBySortingKey($thread->getReplies()->map(
+                        function (Reply $reply) use (
+                            $orderByField,
+                            $orderByDesc,
+                            $setSortingKeyFromCurrentAndChildPosts
+                        ): Reply {
+                            $reply->setSubReplies($reply->getSubReplies()->sortBy(
+                                fn(SubReply $subReplies) => $subReplies->{"get$orderByField"}(),
                                 descending: $orderByDesc,
-                            );
-                            return $setSortingKeyFromCurrentAndChildPosts($reply, 'subReplies');
+                            ));
+                            return $setSortingKeyFromCurrentAndChildPosts($reply, $reply->getSubReplies());
                         },
-                    ));
-                    $setSortingKeyFromCurrentAndChildPosts($thread, 'replies');
-                    $thread['replies'] = $removeSortingKey($thread['replies']);
+                    )));
+                    $setSortingKeyFromCurrentAndChildPosts($thread, $thread->getReplies());
                     return $thread;
                 },
             ),
-        ))->values()->toArray();
+        )->values()->toArray();
 
         $this->stopwatch->stop('reOrderNestedPosts');
         return $ret;

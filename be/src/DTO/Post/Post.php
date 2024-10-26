@@ -3,11 +3,34 @@
 namespace App\DTO\Post;
 
 use App\DTO\TimestampedDTO;
+use Symfony\Component\Serializer\Attribute\Ignore;
 
 trait Post
 {
     use TimestampedDTO { fromEntity as private fromTimestampedEntity; }
-    use PostWithIsMatchQuery;
+
+    private bool $isMatchQuery;
+    private mixed $sortingKey = null;
+
+    public function getIsMatchQuery(): bool
+    {
+        return $this->isMatchQuery;
+    }
+
+    public function setIsMatchQuery(bool $isMatchQuery): void
+    {
+        $this->isMatchQuery = $isMatchQuery;
+    }
+
+    #[Ignore] public function getSortingKey(): mixed
+    {
+        return $this->sortingKey;
+    }
+
+    public function setSortingKey(mixed $sortingKey): void
+    {
+        $this->sortingKey = $sortingKey;
+    }
 
     public static function fromEntity(\App\Entity\Post\Post $entity): self
     {

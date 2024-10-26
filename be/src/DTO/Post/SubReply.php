@@ -5,7 +5,7 @@ namespace App\DTO\Post;
 use App\Entity\Post\SubReply as SubReplyEntity;
 use Symfony\Component\Serializer\Attribute\Ignore;
 
-class SubReply extends SubReplyEntity
+class SubReply extends SubReplyEntity implements SortablePost
 {
     use Post { fromEntity as private fromPostEntity; }
     use PostWithContent;

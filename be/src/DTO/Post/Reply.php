@@ -3,11 +3,25 @@
 namespace App\DTO\Post;
 
 use App\Entity\Post\Reply as ReplyEntity;
+use Illuminate\Support\Collection;
 
-class Reply extends ReplyEntity
+class Reply extends ReplyEntity implements SortablePost
 {
     use Post { fromEntity as private fromPostEntity; }
     use PostWithContent;
+
+    private Collection $subReplies;
+
+    public function getSubReplies(): Collection
+    {
+        return $this->subReplies;
+    }
+
+    public function setSubReplies(Collection $subReplies): self
+    {
+        $this->subReplies = $subReplies;
+        return $this;
+    }
 
     public static function fromEntity(ReplyEntity $entity): self
     {
