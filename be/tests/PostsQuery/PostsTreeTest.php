@@ -20,8 +20,7 @@ class PostsTreeTest extends KernelTestCase
     {
         parent::setUp();
         self::bootKernel();
-        $container = self::getContainer();
-        $this->sut = $container->get(PostsTree::class);
+        $this->sut = self::getContainer()->get(PostsTree::class);
     }
 
     #[DataProvider('provideReOrderNestedPostsData')]

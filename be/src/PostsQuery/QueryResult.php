@@ -36,7 +36,7 @@ readonly class QueryResult
     ) {}
 
     /** @return array{result: Collection, hasMorePages: bool} */
-    public static function hasQueryResultMorePages(QueryBuilder $query, int $limit): array
+    public static function hasMorePages(QueryBuilder $query, int $limit): array
     {
         $results = collect($query->setMaxResults($limit + 1)->getQuery()->getResult());
         if ($results->count() === $limit + 1) {
@@ -91,7 +91,7 @@ readonly class QueryResult
         });
 
         $resultsAndHasMorePages = $queries->map(fn(QueryBuilder $query) =>
-            self::hasQueryResultMorePages($query, $this->perPageItems));
+            self::hasMorePages($query, $this->perPageItems));
         /** @var PostsKeyByTypePluralName $postsKeyByTypePluralName */
         $postsKeyByTypePluralName = $resultsAndHasMorePages
             ->mapWithKeys(fn(array $resultAndHasMorePages, string $postType) =>

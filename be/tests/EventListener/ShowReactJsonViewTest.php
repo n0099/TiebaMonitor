@@ -19,13 +19,7 @@ class ShowReactJsonViewTest extends KernelTestCase
     {
         parent::setUp();
         self::bootKernel();
-        $container = static::getContainer();
-        $this->sut = $container->get(ShowReactJsonView::class);
-    }
-
-    protected function tearDown(): void
-    {
-        parent::tearDown();
+        $this->sut = static::getContainer()->get(ShowReactJsonView::class);
     }
 
     public function testShowing(): void

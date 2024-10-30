@@ -19,8 +19,7 @@ class PrettyJsonResponseTest extends KernelTestCase
     {
         parent::setUp();
         self::bootKernel();
-        $container = static::getContainer();
-        $this->sut = $container->get(PrettyJsonResponse::class);
+        $this->sut = static::getContainer()->get(PrettyJsonResponse::class);
     }
 
     public function test(): void
