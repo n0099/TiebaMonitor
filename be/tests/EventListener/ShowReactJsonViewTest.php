@@ -28,7 +28,7 @@ class ShowReactJsonViewTest extends KernelTestCase
         parent::tearDown();
     }
 
-    public function test(): void
+    public function testShowing(): void
     {
         $event = new ResponseEvent(
             self::$kernel,
@@ -61,5 +61,17 @@ class ShowReactJsonViewTest extends KernelTestCase
             </body>
         </html>
         HTML, $event->getResponse()->getContent());
+    }
+
+    public function testNotShowing(): void
+    {
+        $event = new ResponseEvent(
+            self::$kernel,
+            new Request(),
+            HttpKernelInterface::MAIN_REQUEST,
+            JsonResponse::fromJsonString(\Safe\json_encode(['test' => 'test'])),
+        );
+        ($this->sut)($event);
+        self::assertEquals('{"test":"test"}', $event->getResponse()->getContent());
     }
 }

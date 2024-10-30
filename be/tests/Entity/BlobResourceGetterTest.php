@@ -20,21 +20,21 @@ class BlobResourceGetterTest extends TestCase
         return $stream;
     }
 
-    #[DataProvider('provideProtoBuf')]
-    public function testProtoBuf(string $jsonString): void
+    #[DataProvider('provideProtoBufWrapper')]
+    public function testProtoBufWrapper(string $jsonString): void
     {
         $protoBufClass = PostContentWrapper::class;
-        self::assertNull(BlobResourceGetter::protoBuf(null, $protoBufClass));
+        self::assertNull(BlobResourceGetter::protoBufWrapper(null, $protoBufClass));
         $contentProtoBuf = new PostContentWrapper();
         $contentProtoBuf->mergeFromJsonString($jsonString);
         $resource = self::makeStreamResource($contentProtoBuf->serializeToString());
         self::assertEquals(
-            \Safe\json_decode($jsonString, assoc: true),
-            BlobResourceGetter::protoBuf($resource, $protoBufClass),
+            \Safe\json_decode($jsonString, assoc: true)['value'],
+            BlobResourceGetter::protoBufWrapper($resource, $protoBufClass),
         );
     }
 
-    public static function provideProtoBuf(): array
+    public static function provideProtoBufWrapper(): array
     {
         return [['{ "value": [{ "text": "test" }] }']];
     }
