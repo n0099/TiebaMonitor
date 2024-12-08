@@ -135,10 +135,6 @@ public class TbmDbContext<TModelCacheKeyFactory>(ILogger<TbmDbContext<TModelCach
     : TbmDbContext(logger)
     where TModelCacheKeyFactory : class, IModelCacheKeyFactory
 {
-    [SuppressMessage("ReSharper", "StaticMemberInGenericType")]
-    [SuppressMessage("Major Code Smell", "S2743:Static fields should not be used in generic types")]
-    private static Lazy<NpgsqlDataSource>? _dataSourceSingleton;
-
     // ReSharper disable once UnusedAutoPropertyAccessor.Global
     public required IConfiguration Config { private get; init; }
     public DbSet<ImageInReply> ImageInReplies => Set<ImageInReply>();
@@ -152,7 +148,7 @@ public class TbmDbContext<TModelCacheKeyFactory>(ILogger<TbmDbContext<TModelCach
     [SuppressMessage("Style", "IDE0058:Expression value is never used")]
     protected override void OnConfiguring(DbContextOptionsBuilder options)
     {
-        options.UseNpgsql(GetNpgsqlDataSource(Config.GetConnectionString("Main")).Value, OnConfiguringNpgsql)
+        options.UseNpgsql(Config.GetConnectionString("Main"), OnConfiguringNpgsql)
             .ReplaceService<IModelCacheKeyFactory, TModelCacheKeyFactory>()
             .ReplaceService<IRelationalTransactionFactory, NoSavePointTransactionFactory>()
             .AddInterceptors(UseCurrentXactIdAsConcurrencyTokenCommandInterceptor.Instance)
@@ -180,14 +176,4 @@ public class TbmDbContext<TModelCacheKeyFactory>(ILogger<TbmDbContext<TModelCach
     }
 
     protected virtual void OnConfiguringNpgsql(NpgsqlDbContextOptionsBuilder builder) { }
-    protected virtual void OnBuildingNpgsqlDataSource(NpgsqlDataSourceBuilder builder) { }
-
-    [SuppressMessage("Critical Code Smell", "S2696:Instance members should not write to \"static\" fields")]
-    private Lazy<NpgsqlDataSource> GetNpgsqlDataSource(string? connectionString) =>
-        _dataSourceSingleton ??= new(() =>
-        {
-            var dataSourceBuilder = new NpgsqlDataSourceBuilder(connectionString);
-            OnBuildingNpgsqlDataSource(dataSourceBuilder);
-            return dataSourceBuilder.Build();
-        });
 }

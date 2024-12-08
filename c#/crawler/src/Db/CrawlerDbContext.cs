@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Npgsql;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Infrastructure;
 using static tbm.Crawler.Db.Revision.Splitting.ReplyRevision;
 using static tbm.Crawler.Db.Revision.Splitting.SubReplyRevision;
 using static tbm.Crawler.Db.Revision.Splitting.ThreadRevision;
@@ -117,8 +118,8 @@ public class CrawlerDbContext(ILogger<CrawlerDbContext> logger, Fid fid = 0)
         b.Entity<Forum>().ToTable("tbm_forum");
     }
 
-    protected override void OnBuildingNpgsqlDataSource(NpgsqlDataSourceBuilder builder) =>
-        builder.MapEnum<PostType>("tbmcr_triggeredBy", NpgsqlCamelCaseNameTranslator.Instance);
+    protected override void OnConfiguringNpgsql(NpgsqlDbContextOptionsBuilder builder) =>
+        builder.MapEnum<PostType>("tbmcr_triggeredBy", nameTranslator: NpgsqlCamelCaseNameTranslator.Instance);
 
     public class ModelCacheKeyFactory : IModelCacheKeyFactory
     { // https://stackoverflow.com/questions/51864015/entity-framework-map-model-class-to-table-at-run-time/51899590#51899590
