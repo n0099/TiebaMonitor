@@ -3,11 +3,11 @@
         <PackageReference Include="Autofac" Version="8.1.1" />
         <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="10.0.0" />
         <PackageReference Include="CommunityToolkit.Diagnostics" Version="8.3.2" />
-        <PackageReference Include="EFCore.NamingConventions" Version="8.0.3" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.10" />
-        <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.1" />
-        <PackageReference Include="NLog.Extensions.Logging" Version="5.3.14" />
-        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.10" />
+        <PackageReference Include="EFCore.NamingConventions" Version="9.0.0" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.0" />
+        <PackageReference Include="NLog.Extensions.Logging" Version="5.3.15" />
+        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.2" />
         <PackageReference Include="SuperLinq" Version="6.2.0" />
     </ItemGroup>
     <Choose>
@@ -18,12 +18,12 @@
                 <PackageReference ExcludeAssets="compile" Include="codecracker.CSharp" Version="1.1.0" />
                 <PackageReference ExcludeAssets="compile" Include="CSharpGuidelinesAnalyzer" Version="3.8.5" />
                 <PackageReference ExcludeAssets="compile" Include="IDisposableAnalyzers" Version="4.0.8" />
-                <PackageReference ExcludeAssets="compile" Include="Meziantou.Analyzer" Version="2.0.176" />
-                <PackageReference ExcludeAssets="compile" Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="8.0.0" />
-                <PackageReference ExcludeAssets="compile" Include="Microsoft.VisualStudio.Threading.Analyzers" Version="17.11.20" />
+                <PackageReference ExcludeAssets="compile" Include="Meziantou.Analyzer" Version="2.0.182" />
+                <PackageReference ExcludeAssets="compile" Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="9.0.0" />
+                <PackageReference ExcludeAssets="compile" Include="Microsoft.VisualStudio.Threading.Analyzers" Version="17.12.19" />
                 <PackageReference ExcludeAssets="compile" Include="Roslynator.Analyzers" Version="4.12.9" />
                 <PackageReference ExcludeAssets="compile" Include="SharpSource" Version="1.25.2" />
-                <PackageReference ExcludeAssets="compile" Include="SonarAnalyzer.CSharp" Version="9.32.0.97167" />
+                <PackageReference ExcludeAssets="compile" Include="SonarAnalyzer.CSharp" Version="10.3.0.106239" />
                 <PackageReference ExcludeAssets="compile" Include="StyleCop.Analyzers.Unstable" Version="1.2.0.556" />
             </ItemGroup>
         </When>
