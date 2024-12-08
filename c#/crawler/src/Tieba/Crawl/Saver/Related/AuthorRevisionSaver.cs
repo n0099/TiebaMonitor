@@ -90,10 +90,9 @@ public class AuthorRevisionSaver(
 
     // locking key only using AuthorRevision.Fid and Uid, ignoring TriggeredBy
     // this prevents inserting multiple entities with similar time and other fields with the same values
-    // ReSharper disable NotAccessedPositionalProperty.Global
+    // ReSharper disable once MemberCanBePrivate.Global
     public record UniqueAuthorRevision(Fid Fid, Uid Uid);
 
-    // ReSharper restore NotAccessedPositionalProperty.Global
     private sealed class LatestAuthorRevisionProjection<TValue>
     {
         public Time DiscoveredAt { get; init; }

@@ -19,7 +19,6 @@ public abstract class CrawlFacade<TPostEntity, TParsedPost, TResponse, TPostProt
 {
     private readonly HashSet<Page> _lockingPages = [];
     private readonly ConcurrentDictionary<Uid, User.Parsed> _users = new();
-    private UserParser? _userParser;
     private ICrawlFacade<TPostEntity, TParsedPost>.ExceptionHandler _exceptionHandler = _ => { };
 
     // ReSharper disable UnusedAutoPropertyAccessor.Global
@@ -31,7 +30,9 @@ public abstract class CrawlFacade<TPostEntity, TParsedPost, TResponse, TPostProt
     // ReSharper restore UnusedAutoPropertyAccessor.Global
     protected Fid Fid { get; } = fid;
     protected ConcurrentDictionary<PostId, TParsedPost> Posts { get; } = new();
-    protected UserParser UserParser => _userParser ??= userParserFactory(_users);
+
+    [field: AllowNull, MaybeNull]
+    protected UserParser UserParser => field ??= userParserFactory(_users);
 
     public virtual void Dispose()
     {

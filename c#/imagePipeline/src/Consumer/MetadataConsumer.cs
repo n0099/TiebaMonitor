@@ -242,7 +242,7 @@ public partial class MetadataConsumer : IConsumer<ImageWithBytes>
                 : null;
         }
 
-        private static double ConvertDmsToDd(IReadOnlyList<double> dms)
+        private static double ConvertDmsToDd(List<double> dms)
         { // https://stackoverflow.com/questions/3249700/convert-degrees-minutes-seconds-to-decimal-coordinates
             if (dms.Count != 3) throw new ArgumentException(
                 "Unexpected length for DMS, expecting three doubles.", nameof(dms));

@@ -21,10 +21,10 @@ public partial class ThreadSaver(
 }
 public partial class ThreadSaver
 {
-    private Lazy<Dictionary<Type, AddSplitRevisionsDelegate>>? _addSplitRevisionsDelegatesKeyByEntityType;
+    [field: AllowNull, MaybeNull]
     protected override Lazy<Dictionary<Type, AddSplitRevisionsDelegate>>
         AddSplitRevisionsDelegatesKeyByEntityType =>
-        _addSplitRevisionsDelegatesKeyByEntityType ??= new(() => new()
+        field ??= new(() => new()
         {
             {typeof(ThreadRevision.SplitViewCount), AddRevisionsWithDuplicateIndex<ThreadRevision.SplitViewCount>}
         });

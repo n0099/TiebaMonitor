@@ -43,7 +43,7 @@ public class ImageBatchConsumingWorker(
     }
 
     private async Task Consume(
-        IReadOnlyCollection<ImageWithBytes> imagesWithBytes,
+        List<ImageWithBytes> imagesWithBytes,
         CancellationToken stoppingToken = default)
     {
         await using var dbFactory = dbContextDefaultFactory();

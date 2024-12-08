@@ -9,7 +9,7 @@ public sealed class QrCodeConsumer : MatrixConsumer, IDisposable
     {
         _failedImageHandler = failedImageHandler;
         var modelsPath = config.GetSection("QrCodeConsumer")
-            .GetValue("ModelPath", "./OpenCvWechatModels") ?? "./OpenCvWechatModels";
+            .GetValue("ModelPath", "./OpenCvWechatModels");
         _qrCode = WeChatQRCode.Create(
             $"{modelsPath}/detect.prototxt",
             $"{modelsPath}/detect.caffemodel",

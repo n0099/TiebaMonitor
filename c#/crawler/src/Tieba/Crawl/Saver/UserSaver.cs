@@ -61,10 +61,10 @@ public partial class UserSaver(
 }
 public partial class UserSaver
 {
-    private Lazy<Dictionary<Type, AddSplitRevisionsDelegate>>? _addSplitRevisionsDelegatesKeyByEntityType;
+    [field: AllowNull, MaybeNull]
     protected override Lazy<Dictionary<Type, AddSplitRevisionsDelegate>>
         AddSplitRevisionsDelegatesKeyByEntityType =>
-        _addSplitRevisionsDelegatesKeyByEntityType ??= new(() => new()
+        field ??= new(() => new()
         {
             {typeof(UserRevision.SplitDisplayName), AddRevisionsWithDuplicateIndex<UserRevision.SplitDisplayName>},
             {typeof(UserRevision.SplitPortraitUpdatedAt), AddRevisionsWithDuplicateIndex<UserRevision.SplitPortraitUpdatedAt>},

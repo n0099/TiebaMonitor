@@ -5,13 +5,12 @@ namespace tbm.ImagePipeline.Ocr;
 public sealed partial class TesseractRecognizer(IConfiguration config, string script) : IDisposable
 {
     private readonly IConfigurationSection _config = config.GetSection("OcrConsumer:Tesseract");
-    private Lazy<OCRTesseract>? _tesseractInstanceHorizontal;
-    private Lazy<OCRTesseract>? _tesseractInstanceVertical;
 
     public delegate TesseractRecognizer New(string script);
 
     [SuppressMessage("ReSharper", "StringLiteralTypo")]
-    private Lazy<OCRTesseract> TesseractInstanceHorizontal => _tesseractInstanceHorizontal ??= new(script switch
+    [field: AllowNull, MaybeNull]
+    private Lazy<OCRTesseract> TesseractInstanceHorizontal => field ??= new(script switch
     { // https://en.wikipedia.org/wiki/Template:ISO_15924_script_codes_and_related_Unicode_data
         "Hans" => CreateTesseract("best/chi_sim+best/eng"),
         "Hant" => CreateTesseract("best/chi_tra+best/eng"),
@@ -21,7 +20,8 @@ public sealed partial class TesseractRecognizer(IConfiguration config, string sc
     });
 
     [SuppressMessage("ReSharper", "StringLiteralTypo")]
-    private Lazy<OCRTesseract> TesseractInstanceVertical => _tesseractInstanceVertical ??= new(script switch
+    [field: AllowNull, MaybeNull]
+    private Lazy<OCRTesseract> TesseractInstanceVertical => field ??= new(script switch
     {
         "Hans" => CreateTesseract("best/chi_sim_vert", isVertical: true),
         "Hant" => CreateTesseract("best/chi_tra_vert", isVertical: true),
@@ -43,7 +43,7 @@ public sealed partial class TesseractRecognizer(IConfiguration config, string sc
     // https://github.com/shimat/opencvsharp/issues/873#issuecomment-1458868153
     // https://pyimagesearch.com/2021/11/15/tesseract-page-segmentation-modes-psms-explained-how-to-improve-your-ocr-accuracy/
     private OCRTesseract CreateTesseract(string scripts, bool isVertical = false) =>
-        OCRTesseract.Create(_config.GetValue("DataPath", "") ?? "",
+        OCRTesseract.Create(_config.GetValue("DataPath", ""),
             scripts, charWhitelist: "", oem: 1, psmode: isVertical ? 5 : 7);
 }
 public sealed partial class TesseractRecognizer

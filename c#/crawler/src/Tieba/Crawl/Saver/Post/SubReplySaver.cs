@@ -22,10 +22,10 @@ public partial class SubReplySaver(
 }
 public partial class SubReplySaver
 {
-    private Lazy<Dictionary<Type, AddSplitRevisionsDelegate>>? _addSplitRevisionsDelegatesKeyByEntityType;
+    [field: AllowNull, MaybeNull]
     protected override Lazy<Dictionary<Type, AddSplitRevisionsDelegate>>
         AddSplitRevisionsDelegatesKeyByEntityType =>
-        _addSplitRevisionsDelegatesKeyByEntityType ??= new(() => new()
+        field ??= new(() => new()
         {
             {typeof(SubReplyRevision.SplitAgreeCount), AddRevisionsWithDuplicateIndex<SubReplyRevision.SplitAgreeCount>},
             {typeof(SubReplyRevision.SplitDisagreeCount), AddRevisionsWithDuplicateIndex<SubReplyRevision.SplitDisagreeCount>}

@@ -7,7 +7,6 @@ public sealed class ClientRequesterTcs : WithLogTrace
     private readonly ConcurrentQueue<TaskCompletionSource> _queue = new();
     private readonly Timer _timer = new() {Enabled = true};
     private readonly Stopwatch _stopwatch = new();
-    private double _maxRps;
     private uint _requestCounter;
 
     public ClientRequesterTcs(ILogger<ClientRequesterTcs> logger, IConfiguration config)
@@ -28,10 +27,10 @@ public sealed class ClientRequesterTcs : WithLogTrace
     private float AverageRps => _requestCounter / (float)_stopwatch.Elapsed.TotalSeconds;
     private double MaxRps
     {
-        get => _maxRps;
+        get;
         set
         {
-            _maxRps = value;
+            field = value;
             if ((uint)_timer.Interval != (uint)(1000 / value))
             { // only update interval with a truncated integer to prevent frequently change it
                 // which will cause the increment of real rps can't keep up with _maxRps with long queue length

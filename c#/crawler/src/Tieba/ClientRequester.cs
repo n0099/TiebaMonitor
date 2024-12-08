@@ -100,7 +100,7 @@ public class ClientRequester(
             return acc;
         }) + "tiebaclient!!!";
 #pragma warning disable CA5351 // Do Not Use Broken Cryptographic Algorithms
-        var signatureMd5 = BitConverter.ToString(MD5.HashData(Encoding.UTF8.GetBytes(signature))).Replace("-", "");
+        var signatureMd5 = Convert.ToHexString(MD5.HashData(Encoding.UTF8.GetBytes(signature)));
 #pragma warning restore CA5351 // Do Not Use Broken Cryptographic Algorithms
         postParamPairs.Add(KeyValuePair.Create("sign", signatureMd5));
 

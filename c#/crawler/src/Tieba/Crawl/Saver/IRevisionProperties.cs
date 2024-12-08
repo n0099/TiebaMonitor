@@ -6,6 +6,7 @@ public interface IRevisionProperties
         [typeof(ThreadRevision), typeof(ReplyRevision), typeof(SubReplyRevision), typeof(UserRevision)]);
 
     private static IReadOnlyDictionary<Type, IReadOnlyDictionary<string, PropertyInfo>> GetPropsKeyByType(IEnumerable<Type> types) =>
-        types.ToDictionary(type => type, type =>
-            (IReadOnlyDictionary<string, PropertyInfo>)type.GetProperties().ToDictionary(prop => prop.Name));
+        types.ToDictionary(type => type,
+            IReadOnlyDictionary<string, PropertyInfo> (type) =>
+            type.GetProperties().ToDictionary(prop => prop.Name));
 }

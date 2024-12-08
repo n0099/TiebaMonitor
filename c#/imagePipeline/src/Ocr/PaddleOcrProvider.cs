@@ -18,8 +18,7 @@ public sealed partial class PaddleOcrProvider : IDisposable
     {
         _config = config.GetSection("OcrConsumer:PaddleOcr");
         _script = script;
-        Settings.GlobalModelDirectory =
-            _config.GetValue("ModelPath", "./PaddleOcrModels") ?? "./PaddleOcrModels";
+        Settings.GlobalModelDirectory = _config.GetValue("ModelPath", "./PaddleOcrModels");
         _paddleOcrDetectorFactory = paddleOcrDetectorFactory;
         _paddleOcrRecognizerFactory = paddleOcrRecognizerFactory;
     }
