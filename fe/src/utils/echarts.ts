@@ -29,13 +29,13 @@ export const echarts4ColorTheme: ColorPaletteOptionMixin = {
 
 export const timeGranularities = ['minute', 'hour', 'day', 'week', 'month', 'year'] as const;
 export type TimeGranularity = typeof timeGranularities[number];
-export type TimeGranularityStringMap = { [P in TimeGranularity]?: string };
-export const timeGranularityAxisType: { [P in TimeGranularity]: 'category' | 'time' } = {
+export type TimeGranularityStringMap = Partial<Record<TimeGranularity, string>>;
+export const timeGranularityAxisType: Record<TimeGranularity, 'category' | 'time'> = {
     ...keysWithSameValue(['minute', 'hour', 'day'], 'time'),
     ...keysWithSameValue(['week', 'month', 'year'], 'category')
 };
 export const timeGranularityAxisPointerLabelFormatter: (dateTimeTransformer: (dateTime: DateTime) => DateTime) =>
-{ [P in TimeGranularity]: (params: { value: Date | number | string }) => string } =
+Record<TimeGranularity, (params: { value: Date | number | string }) => string> =
 (dateTimeTransformer = i => i) => ({
     minute: ({ value }) => (_.isNumber(value)
         ? dateTimeTransformer(DateTime.fromMillis(value)).toLocaleString(DateTime.DATETIME_SHORT)

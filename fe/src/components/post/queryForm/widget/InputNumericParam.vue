@@ -18,7 +18,7 @@
 <script setup lang="ts">
 import _ from 'lodash';
 
-defineProps<{ placeholders: { [P in 'BETWEEN' | 'IN' | 'equals']: string } }>();
+defineProps<{ placeholders: Record<'BETWEEN' | 'IN' | 'equals', string> }>();
 // eslint-disable-next-line vue/define-emits-declaration
 defineEmits({
     'update:modelValue': (p: KnownNumericParams) =>

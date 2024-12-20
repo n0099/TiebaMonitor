@@ -153,14 +153,14 @@ const {
     top5CandidateCountGroupByTime: top5CandidateCountGroupByTimeRef,
     allVoteCountGroupByTime: allVoteCountGroupByTimeRef
 } = chartElementRefs;
-const echartsInstances: { [P in ChartName]: echarts.ECharts | null } = {
+const echartsInstances: Record<ChartName, echarts.ECharts | null> = {
     top50CandidateCount: null,
     top10CandidatesTimeline: null,
     top5CandidateCountGroupByTime: null,
     allVoteCountGroupByTime: null
 };
 
-let top10CandidatesTimelineVotes: { [P in 'invalid' | 'valid']: Top10CandidatesTimeline } = { valid: [], invalid: [] };
+let top10CandidatesTimelineVotes: Record<'invalid' | 'valid', Top10CandidatesTimeline> = { valid: [], invalid: [] };
 type Top10CandidatesTimelineDataset = Array<CandidateVoteCount & { voteFor: string }>;
 interface VoteCountSeriesLabelFormatterParams {
     data: OptionDataItem | Top10CandidatesTimelineDataset[0],
@@ -705,7 +705,7 @@ const chartLoadder = {
         } as echarts.ComposeOption<DatasetComponentOption | GridComponentOption>);
     }
 };
-const isChartLoading = reactive<{ [P in ChartName]: boolean }>(keysWithSameValue(chartNames, true));
+const isChartLoading = reactive<Record<ChartName, boolean>>(keysWithSameValue(chartNames, true));
 const loadChart = (chartName: ChartName) => () => {
     isChartLoading[chartName] = true;
     chartLoadder[chartName]();

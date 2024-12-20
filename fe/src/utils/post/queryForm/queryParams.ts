@@ -92,11 +92,11 @@ export interface KnownUniqueParams extends Record<string, UnknownParam> {
     }
 }
 
-const paramsMetadataKeyByType: { [P in 'array' | 'dateTimeRange' | 'numeric' | 'textMatch']: {
+const paramsMetadataKeyByType: Record<'array' | 'dateTimeRange' | 'numeric' | 'textMatch', {
     default?: NamelessUnknownParam,
     preprocessor?: ParamPreprocessorOrWatcher,
     watcher?: ParamPreprocessorOrWatcher
-} } = { // mutating param object will sync changes
+}> = { // mutating param object will sync changes
     array: {
         preprocessor(param) {
             if (_.isString(param.value))

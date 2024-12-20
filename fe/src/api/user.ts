@@ -8,7 +8,7 @@ export type ForumModeratorType = 'assist'
 | 'publication'
 | 'videoadmin'
 | 'voiceadmin';
-export const knownModeratorTypes: { [P in ForumModeratorType]: [string, BootstrapColor] } = {
+export const knownModeratorTypes: Record<ForumModeratorType, [string, BootstrapColor]> = {
     ...keysWithSameValue(['fourth_manager', 'fourthmanager'], ['第四吧主', 'danger']),
     manager: ['吧主', 'danger'],
     assist: ['小吧', 'primary'],

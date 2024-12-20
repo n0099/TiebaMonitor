@@ -27,8 +27,8 @@ export type ApiUsers = Api<
 export type JsonString = string;
 export type ApiPosts = Api<CursorPagination & {
     pages: {
-        matchQueryPostCount: { [P in PostType]: UInt },
-        notMatchQueryParentPostCount: { [P in Exclude<PostType, 'subRely'>]: UInt }
+        matchQueryPostCount: Record<PostType, UInt>,
+        notMatchQueryParentPostCount: Record<Exclude<PostType, 'subRely'>, UInt>
     },
     type: 'index' | 'search',
     forum: Pick<ApiForums['response'][number], 'fid' | 'name'>,

@@ -75,7 +75,7 @@ onMounted(() => togglePostNavExpanded(matchMedia('(min-width: 900px)').matches))
 const postNavDisplay = ref('none'); // using media query in css instead of js before hydrate
 onMounted(() => { postNavDisplay.value = 'unset' });
 
-type PostIdObj = { [P in PostIDStr]?: string | number };
+type PostIdObj = Partial<Record<PostIDStr, string | number>>;
 const routeHash = (postIdObj: PostIdObj) => {
     if (postIdObj.spid !== undefined)
         return `#spid/${postIdObj.spid}`;

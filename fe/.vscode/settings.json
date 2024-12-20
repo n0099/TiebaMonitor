@@ -33,5 +33,6 @@
   "vue.inlayHints.inlineHandlerLeading": true,
   "vue.inlayHints.optionsWrapper": true,
   "vue.inlayHints.vBindShorthand": true,
-  "typescript.preferences.preferTypeOnlyAutoImports": true
+  "typescript.preferences.preferTypeOnlyAutoImports": true,
+  "editor.gotoLocation.multipleDefinitions": "goto"
 }
