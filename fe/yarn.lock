@@ -15,7 +15,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ant-design-vue/nuxt@npm:1.4.6":
+"@ant-design-vue/nuxt@npm:^1.4.6":
   version: 1.4.6
   resolution: "@ant-design-vue/nuxt@npm:1.4.6"
   dependencies:
@@ -8291,6 +8291,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"pinia@npm:^2.3.0":
+  version: 2.3.0
+  resolution: "pinia@npm:2.3.0"
+  dependencies:
+    "@vue/devtools-api": "npm:^6.6.3"
+    vue-demi: "npm:^0.14.10"
+  peerDependencies:
+    typescript: ">=4.4.4"
+    vue: ^2.7.0 || ^3.5.11
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  checksum: 10c0/08bba6fd45f4e45e1e7160c70005f074722a6eccb3da113bb038bf219ff4447b745fed23ec42efd001322599433bb741986b5f17628c079508136ee2b7923062
+  languageName: node
+  linkType: hard
+
 "pkg-types@npm:^1.0.3, pkg-types@npm:^1.2.0, pkg-types@npm:^1.2.1":
   version: 1.2.1
   resolution: "pkg-types@npm:1.2.1"
@@ -9847,7 +9863,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "tbm@workspace:."
   dependencies:
-    "@ant-design-vue/nuxt": "npm:1.4.6"
+    "@ant-design-vue/nuxt": "npm:^1.4.6"
     "@eslint/compat": "npm:^1.2.4"
     "@eslint/eslintrc": "npm:^3.2.0"
     "@eslint/js": "npm:^9.17.0"
@@ -9885,6 +9901,7 @@ __metadata:
     luxon: "npm:^3.5.0"
     noty: "npm:^3.2.0-beta-deprecated"
     nuxt: "npm:3.14.1592"
+    pinia: "npm:^2.3.0"
     schema-dts: "npm:^1.1.2"
     scroll-into-view-if-needed: "npm:^3.1.0"
     stats.js: "npm:^0.17.0"
