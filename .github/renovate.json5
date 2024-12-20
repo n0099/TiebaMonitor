@@ -37,6 +37,7 @@
     },
     {
       "matchPackageNames": ["php"],
+      "enabled": false,
       "dependencyDashboardApproval": true
     }
   ]
