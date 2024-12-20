@@ -1394,7 +1394,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nolyfill/is-core-module@npm:1.0.39":
+"@nolyfill/is-core-module@npm:1.0.39, is-core-module@npm:@nolyfill/is-core-module@latest":
   version: 1.0.39
   resolution: "@nolyfill/is-core-module@npm:1.0.39"
   checksum: 10c0/34ab85fdc2e0250879518841f74a30c276bca4f6c3e13526d2d1fe515e1adf6d46c25fcd5989d22ea056d76f7c39210945180b4859fc83b050e2da411aa86289
@@ -6047,13 +6047,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"hasown@npm:@nolyfill/hasown@latest":
-  version: 1.0.29
-  resolution: "@nolyfill/hasown@npm:1.0.29"
-  checksum: 10c0/72f775a9edf71f12d730975da3daaaa9d3d0d80c2045a0c21e9c85529e139ca4a73ce8a7140252a5ba251db4560217ee9fe2f6de5c8490d82e23b76947c1aa00
-  languageName: node
-  linkType: hard
-
 "he@npm:^1.2.0":
   version: 1.2.0
   resolution: "he@npm:1.2.0"
@@ -6366,15 +6359,6 @@ __metadata:
   dependencies:
     semver: "npm:^7.6.3"
   checksum: 10c0/2966744188fcd28e0123c52158c7073973f88babfa9ab04e2846ec5862d6b0f8f398df6413429d930f7c5ee6111ce2cbfb3eb8652d9ec42d4a37dc5089a866fb
-  languageName: node
-  linkType: hard
-
-"is-core-module@npm:^2.13.0, is-core-module@npm:^2.16.0":
-  version: 2.16.0
-  resolution: "is-core-module@npm:2.16.0"
-  dependencies:
-    hasown: "npm:^2.0.2"
-  checksum: 10c0/57e3b4bf3503a5ace3e61ef030a2eefa03d27827647b22968456e3e4befffed7c7aa849eea2e029f4f74a119a2d53cc391d5bad59c9352ecc9b79be3fd2acf79
   languageName: node
   linkType: hard
 
@@ -9155,24 +9139,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"safe-buffer@npm:^5.1.0, safe-buffer@npm:~5.2.0":
-  version: 5.2.1
-  resolution: "safe-buffer@npm:5.2.1"
-  checksum: 10c0/6501914237c0a86e9675d4e51d89ca3c21ffd6a31642efeba25ad65720bce6921c9e7e974e5be91a786b25aa058b5303285d3c15dbabf983a919f5f630d349f3
+"safe-buffer@npm:@nolyfill/safe-buffer@latest":
+  version: 1.0.41
+  resolution: "@nolyfill/safe-buffer@npm:1.0.41"
+  checksum: 10c0/d75b87a66bc178dc08528d12094c73236d0c1b0e38a2680ace0c8f24c36ce9ed14bf90faf5e85e8643dbcbb0f312f04ea60e7a3cd6a54074b6b63127900f9274
   languageName: node
   linkType: hard
 
-"safe-buffer@npm:~5.1.0, safe-buffer@npm:~5.1.1":
-  version: 5.1.2
-  resolution: "safe-buffer@npm:5.1.2"
-  checksum: 10c0/780ba6b5d99cc9a40f7b951d47152297d0e260f0df01472a1b99d4889679a4b94a13d644f7dbc4f022572f09ae9005fa2fbb93bbbd83643316f365a3e9a45b21
-  languageName: node
-  linkType: hard
-
-"safer-buffer@npm:>= 2.1.2 < 3.0.0":
-  version: 2.1.2
-  resolution: "safer-buffer@npm:2.1.2"
-  checksum: 10c0/7e3c8b2e88a1841c9671094bbaeebd94448111dd90a81a1f606f3f67708a6ec57763b3b47f06da09fc6054193e0e6709e77325415dc8422b04497a8070fa02d4
+"safer-buffer@npm:@nolyfill/safer-buffer@latest":
+  version: 1.0.41
+  resolution: "@nolyfill/safer-buffer@npm:1.0.41"
+  checksum: 10c0/af82b6589dcd7304e28d3ba82ec13684dc00325847972d5948f0c6240f43a5818ce2b120001011cb6faa9eba2136ca6fcdf52d4dad5ccbc6f1678b6d5d9cec3f
   languageName: node
   linkType: hard
 
