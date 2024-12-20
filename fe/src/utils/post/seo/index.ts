@@ -19,9 +19,10 @@ export const usePostsSEO = (
                     return `${firstPostPageForum.value?.name}吧 - 帖子查询`;
                 case 'postID':
                     return `${firstThread.value?.title} - ${firstPostPageForum.value?.name}吧 - 帖子查询`;
-                default:
-                    return '帖子查询';
+                case 'empty':
             }
+
+            return '帖子查询';
         })
     });
     defineOgImageComponent('Post', { routePath: route.path, firstPostPage, firstPostPageForum, firstThread, currentQueryType });

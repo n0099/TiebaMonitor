@@ -1,3 +1,4 @@
+// eslint-disable-next-line import-x/no-unresolved
 import viewer from 'v-viewer';
 import 'viewerjs/dist/viewer.css';
 
