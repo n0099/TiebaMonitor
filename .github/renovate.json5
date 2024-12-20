@@ -36,7 +36,9 @@
       "commitMessagePrefix": "deps(fe): "
     },
     {
+      "matchCategories": ["php"],
       "matchPackageNames": ["php"],
+      "enabled": false,
       "dependencyDashboardApproval": true
     }
   ]
